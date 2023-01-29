@@ -6,7 +6,7 @@
 function UpdateDel(){
     echo "Copying file from " "$1" " to " "$2"
 
-    rsync -cauvn --append --delete-after --exclude=".*" "$1" "$2"
+    rsync -cauvn --append --delete-during --exclude-from="$HOME/GitHub/MacBackup/excluded_files.txt" "$1" "$2"
 
     echo "Continue? (Y/N):"
     read stdin
@@ -21,13 +21,13 @@ function UpdateDel(){
         exit
     fi
 
-    rsync -cau --append --delete-after --exclude=".*" "$1" "$2"
+    rsync -cau --append --delete-during --exclude-from="$HOME/GitHub/MacBackup/excluded_files.txt" "$1" "$2"
 }
 
 function Update(){
     echo "Copying file from " "$1" " to " "$2"
 
-    rsync -cauvn --append --exclude=".*" "$1" "$2"
+    rsync -cauvn --append --exclude-from="$HOME/GitHub/MacBackup/excluded_files.txt" "$1" "$2"
 
     echo "Continue? (Y/N):"
     read stdin
@@ -42,5 +42,5 @@ function Update(){
         exit
     fi
 
-    rsync -cau --append --exclude=".*" "$1" "$2"
+    rsync -cau --append --exclude-from="$HOME/GitHub/MacBackup/excluded_files.txt" "$1" "$2"
 }
